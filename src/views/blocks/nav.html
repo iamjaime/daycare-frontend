@@ -1,0 +1,44 @@
+<!-- list -->
+<ul class="nav">
+  <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+    <span translate="aside.nav.HEADER">Main Menu</span>
+  </li>
+  <li>
+    <a ui-sref="app.dashboard" class="auto">      
+      <i class="glyphicon glyphicon-stats icon text-primary-dker"></i>
+      <span class="font-bold" translate="aside.nav.DASHBOARD">Dashboard</span>
+    </a>
+  </li>
+  <li>
+    <a ui-sref="app.children" class="auto">      
+      <i class="fa fa-group icon text-primary-dker"></i>
+      <span class="font-bold" translate="aside.nav.CHILDREN">Children</span>
+    </a>
+  </li>
+  <li>
+    <a ui-sref="app.users" class="auto">      
+      <i class="fa fa-user icon text-primary-dker"></i>
+      <span class="font-bold" translate="aside.nav.USERS">Users</span>
+    </a>
+  </li>
+  <li ui-sref-active="active">
+    <a ui-sref="app.calendar">
+      <i class="glyphicon glyphicon-calendar icon text-info-dker"></i>
+      <span class="font-bold" translate="aside.nav.CALENDAR">Calendar</span>
+    </a>
+  </li>
+  <li ui-sref-active="active">
+    <a ui-sref="app.notifications">
+      <b class="badge bg-info pull-right">9</b>
+      <i class="glyphicon glyphicon-envelope icon text-info-lter"></i>
+      <span class="font-bold" translate="header.navbar.NOTIFICATIONS">Notifications</span>
+    </a>
+  </li>
+  <li ui-sref-active="active">
+    <a ui-sref="app.settings">
+      <i class="fa fa-cogs icon text-info-dker"></i>
+      <span class="font-bold" translate="aside.nav.SETTINGS">Settings</span>
+    </a>
+  </li>
+</ul>
+<!-- / list -->

@@ -15,9 +15,12 @@
 },
 "aside" : {
   "nav" : {
-    "HEADER" : "Navigation",
+    "HEADER" : "Main Menu",
     "DASHBOARD" : "Dashboard",
+    "CHILDREN" : "Children",
+    "USERS" : "Users",
     "CALENDAR" : "Calendar",
+    "SETTINGS" : "Settings",
     "EMAIL" : "Email",
     "WIDGETS" : "Widgets",
     "components" : {
