@@ -42,6 +42,12 @@ angular.module('app')
                   templateUrl: 'views/children/children.html'
               })
 
+              //Child
+              .state('app.child', {
+                  url: '/child/:childId',
+                  templateUrl: 'views/children/child.html'
+              })
+
               //Users
               .state('app.users', {
                   url: '/users',
