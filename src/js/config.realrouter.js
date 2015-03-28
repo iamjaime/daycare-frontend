@@ -48,6 +48,55 @@ angular.module('app')
                   templateUrl: 'views/children/child.html'
               })
 
+              //Child - Dashboard
+              .state('app.child.dashboard', {
+                  url: '/dashboard',
+                  templateUrl: 'views/children/dashboard/dashboard.html'
+              })
+
+              //Child - Health
+              .state('app.child.health', {
+                  url: '/health',
+                  templateUrl: 'views/children/health/health.html'
+              })
+
+              //Child - Notes
+              .state('app.child.notes', {
+                  url: '/notes',
+                  templateUrl: 'views/children/notes/notes.html',
+                  resolve: {
+                      deps: ['uiLoad',
+                        function( uiLoad ){
+                          return uiLoad.load( ['js/app/note/note.js',
+                                               JQ_CONFIG.moment] );
+                      }]
+                  }
+              })
+
+              //Child - Pickup
+              .state('app.child.pickup', {
+                  url: '/pickup',
+                  templateUrl: 'views/children/pickup/pickup.html'
+              })
+
+              //Child - Invoice
+              .state('app.child.invoice', {
+                  url: '/invoice',
+                  templateUrl: 'views/children/invoice/invoice.html'
+              })
+
+              //Child - Emergency
+              .state('app.child.emergency', {
+                  url: '/emergency',
+                  templateUrl: 'views/children/emergency/emergency.html'
+              })
+
+              //Child - Reports
+              .state('app.child.reports', {
+                  url: '/reports',
+                  templateUrl: 'views/children/reports/reports.html'
+              })
+
               //Users
               .state('app.users', {
                   url: '/users',
