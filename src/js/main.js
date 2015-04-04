@@ -12,7 +12,7 @@ angular.module('app')
 
       // config
       $scope.app = {
-        name: 'Angulr',
+        name: 'Child Care',
         version: '2.0.1',
         // for chart colors
         color: {
@@ -26,10 +26,10 @@ angular.module('app')
           black:   '#1c2b36'
         },
         settings: {
-          themeID: 1,
-          navbarHeaderColor: 'bg-black',
-          navbarCollapseColor: 'bg-white-only',
-          asideColor: 'bg-black',
+          themeID: 8,
+          navbarHeaderColor: 'bg-info dker',
+          navbarCollapseColor: 'bg-info dker',
+          asideColor: 'bg-light dker b-r',
           headerFixed: true,
           asideFixed: false,
           asideFolded: false,
