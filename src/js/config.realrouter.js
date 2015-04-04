@@ -106,7 +106,19 @@ angular.module('app')
               //Calendar
               .state('app.calendar', {
                   url: '/calendar',
-                  templateUrl: 'views/calendar/calendar.html'
+                  templateUrl: 'views/calendar/calendar.html',
+                  resolve: {
+                      deps: ['$ocLazyLoad', 'uiLoad',
+                        function( $ocLazyLoad, uiLoad ){
+                          return uiLoad.load(
+                            JQ_CONFIG.fullcalendar.concat('js/app/calendar/calendar.js')
+                          ).then(
+                            function(){
+                              return $ocLazyLoad.load('ui.calendar');
+                            }
+                          )
+                      }]
+                  }
               })
 
               //Notifications
