@@ -1,10 +1,10 @@
 'use strict';
+var app = angular.module('app');
 
 /**
  * Config for the router
  */
-angular.module('app')
-  .run(
+app.run(
     [          '$rootScope', '$state', '$stateParams',
       function ($rootScope,   $state,   $stateParams) {
           $rootScope.$state = $state;
@@ -39,7 +39,8 @@ angular.module('app')
               //Children
               .state('app.children', {
                   url: '/children',
-                  templateUrl: 'views/children/children.html'
+                  templateUrl: 'views/children/children.html',
+                  controller: 'ChildrenController'
               })
 
               //Child

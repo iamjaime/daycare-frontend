@@ -1,8 +1,6 @@
 // config
-
-var app =  
-angular.module('app')
-  .config(
+var app =  angular.module('app');
+app.config(
     [        '$controllerProvider', '$compileProvider', '$filterProvider', '$provide',
     function ($controllerProvider,   $compileProvider,   $filterProvider,   $provide) {
         
