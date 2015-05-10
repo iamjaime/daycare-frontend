@@ -1,5 +1,6 @@
 'use strict';
 var app = angular.module('app');
+var API_END_POINT = "http://localhost:8000/api/v1";
 
 /**
  * Config for the router
@@ -24,6 +25,51 @@ app.run(
                   url: '/app',
                   templateUrl: 'views/app.html'
               })
+              //Access Ui-View abstract
+              .state('access', {
+                  url: '/access',
+                  template: '<div ui-view class="fade-in-right-big smooth"></div>'
+              })
+
+              //Signin
+              .state('access.signin', {
+                  url: '/signin',
+                  templateUrl: 'views/signin/signin.html',
+                  resolve: {
+                      deps: ['uiLoad',
+                        function( uiLoad ){
+                          return uiLoad.load( [
+                            'js/controllers/signin/signin.js',
+                            'js/services/signin/signin.js'
+                            ] );
+                      }]
+                  }
+              })
+
+              //Signup
+              .state('access.signup', {
+                  url: '/signup',
+                  templateUrl: 'views/signup/signup.html',
+                  resolve: {
+                      deps: ['uiLoad',
+                        function( uiLoad ){
+                          return uiLoad.load( ['js/controllers/signup.js'] );
+                      }]
+                  }
+              })
+
+              //Forgot Password
+              .state('access.forgotpwd', {
+                  url: '/forgotpwd',
+                  templateUrl: 'views/forgotpassword/forgotpassword.html'
+              })
+
+              //Page Not Found
+              .state('access.404', {
+                  url: '/404',
+                  templateUrl: 'views/404/404.html'
+              })
+
               //Dashboard
               .state('app.dashboard', {
                   url: '/dashboard',
