@@ -21,6 +21,7 @@
     "USERS" : "Users",
     "CALENDAR" : "Calendar",
     "SETTINGS" : "Settings",
+    "LOGOUT" : "Logout",
     "EMAIL" : "Email",
     "WIDGETS" : "Widgets",
     "components" : {

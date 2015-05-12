@@ -10,11 +10,11 @@
 
 	<div class="row">
 
-	<div class="col-md-4">
+	<div class="col-md-4" ng-repeat="child in children">
 		<div class="panel">
 	            <!--Widget Header Bar-->
 	            <div class="panel-heading bg-info dk no-border">
-	              <div class="h4 font-thin">Jaime Bernal</div>
+	              <div class="h4 font-thin">{{ child.first_name }} {{ child.last_name }}</div>
 	            </div>
 	           	
 				<!--Widget Body-->
@@ -28,12 +28,12 @@
 		            <div class="col padder-v">
 		            	<div class="w-sm">
 		            		<label class="label bg-primary m-l-xs">Registered On:</label>
-		            		<p>July 25, 2014</p>
+		            		<p>{{ child.created_at }}</p>
 		            	</div>
 
 		            	<div class="w-sm">
 		            		<label class="label bg-primary m-l-xs">Birthday:</label>
-		            		<p>July 25, 1989</p>
+		            		<p>{{ child.dob }}</p>
 		            	</div>
 
 		            	<div class="w-sm">
@@ -54,7 +54,7 @@
 			          		Checkin
 		          		</button>
 		          		
-		          		<button ui-sref="app.child.dashboard({ childId: 1 })" class="btn btn-primary btn-addon btn-sm">
+		          		<button ui-sref="app.child.dashboard({ childId: child.id })" class="btn btn-primary btn-addon btn-sm">
 			          		<i class="fa fa-folder-open"></i>
 			          		Open
 		          		</button>	

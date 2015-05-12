@@ -70,6 +70,21 @@ app.run(
                   templateUrl: 'views/404/404.html'
               })
 
+              //Facility Select
+              .state('facilities', {
+                url: '/facilities',
+                controller: 'SelectFacilityController',
+                templateUrl: 'views/facilities/selectFacility.html',
+                resolve: {
+                      deps: ['uiLoad',
+                        function( uiLoad ){
+                          return uiLoad.load( [
+                            'js/controllers/facilities/selectFacilities.js', 
+                            'js/services/facilities/facility.js'] );
+                      }]
+                  }
+              })
+
               //Dashboard
               .state('app.dashboard', {
                   url: '/dashboard',

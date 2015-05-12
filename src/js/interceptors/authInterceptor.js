@@ -7,10 +7,10 @@ app.factory('AuthInterceptor', function ($q, $injector, $cookieStore) {
       return {
          request: function (config) {
             //Get the logged in user facility token.
-            var admin = $cookieStore.get('admin');
-            if(admin !== undefined && admin.api_auth_token) {
+            var facility = $cookieStore.get('usrFacility');
+            if(facility !== undefined && facility.api_auth_token) {
                 config.headers = config.headers || {};
-                config.headers['X-AUTH-TOKEN'] = admin.api_auth_token;
+                config.headers['X-AUTH-TOKEN'] = facility.api_auth_token;
             }
 
             return config;
@@ -19,8 +19,8 @@ app.factory('AuthInterceptor', function ($q, $injector, $cookieStore) {
             //If unauthorized then lets remove the admin cookie.
             if (response.status === 401) {
                 console.log("Response 401: @TODO do something useful here in response block");
-                $cookieStore.remove('admin');
-                
+                $cookieStore.remove('usrFacility');
+                $cookieStore.remove('usr');
             }
             return response || $q.when(response);
          },
@@ -30,7 +30,8 @@ app.factory('AuthInterceptor', function ($q, $injector, $cookieStore) {
             
             if (rejection.status === 401) {
                 //unauthorized.... lets do a redirect to login page...
-                $cookieStore.remove('admin');
+                $cookieStore.remove('usrFacility');
+                $cookieStore.remove('usr');
                 $injector.get('$state').go('access.signin');
             }
 
