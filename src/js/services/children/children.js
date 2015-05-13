@@ -28,7 +28,13 @@ app.factory('Children', ['$resource', function ($resource) {
         archived: {
            url: API_END_POINT + '/admin/events/?include=archived',
            method: 'GET'
+        },
+
+        contacts: {
+          url: API_END_POINT + '/child/:childId/contacts',
+          method: 'GET'
         }
+
       });
    }
 ])

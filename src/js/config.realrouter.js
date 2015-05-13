@@ -9,7 +9,12 @@ app.run(
     [          '$rootScope', '$state', '$stateParams',
       function ($rootScope,   $state,   $stateParams) {
           $rootScope.$state = $state;
-          $rootScope.$stateParams = $stateParams;        
+          $rootScope.$stateParams = $stateParams;
+
+          $rootScope.$on('$stateChangeError', function () {
+            // Redirect user to our login page
+            $state.go('access.signin');
+          });        
       }
     ]
   )
@@ -19,11 +24,28 @@ app.run(
           
           $urlRouterProvider
               .otherwise('/app/dashboard');
+          //Check If User Is Logged In...
+          var authenticated = ['$q', '$cookieStore', function ($q, $cookieStore) {
+          var deferred = $q.defer();
+          var usr = $cookieStore.get('usr');
+          var usrFacility = $cookieStore.get('usrFacility');
+          if(usr && usrFacility){
+            deferred.resolve();
+          }else{
+            deferred.reject('Not logged in');
+          }
+          return deferred.promise;
+        }];
+
+
           $stateProvider
               .state('app', {
                   abstract: true,
                   url: '/app',
-                  templateUrl: 'views/app.html'
+                  templateUrl: 'views/app.html',
+                  resolve: {
+                    authenticated: authenticated
+                  }
               })
               //Access Ui-View abstract
               .state('access', {
@@ -107,7 +129,16 @@ app.run(
               //Child
               .state('app.child', {
                   url: '/child/:childId',
-                  templateUrl: 'views/children/child.html'
+                  templateUrl: 'views/children/child.html',
+                  controller: 'ChildController',
+                  resolve: {
+                      deps: ['uiLoad',
+                        function( uiLoad ){
+                          return uiLoad.load( [
+                            'js/controllers/children/child.js', 
+                            'js/services/children/children.js'] );
+                      }]
+                  }
               })
 
               //Child - Dashboard
