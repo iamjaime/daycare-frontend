@@ -12,7 +12,6 @@ app.factory('AuthInterceptor', function ($q, $injector, $cookieStore) {
                 config.headers = config.headers || {};
                 config.headers['X-AUTH-TOKEN'] = facility.api_auth_token;
             }
-
             return config;
          },
          response: function(response){

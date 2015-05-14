@@ -2,22 +2,20 @@
 
 /* Controller */
   // Children controller
-app.controller('ChildrenController', ['$scope', '$http', 'Children', function($scope, $http, Children) {
+app.controller('ChildrenController', ['$rootScope', '$scope', '$http', 'Children', function($rootScope, $scope, $http, Children) {
     
     getChildren();
 
     function getChildren(){
-      $scope.isLoading = true;
+      $rootScope.isLoading = true;
       Children.get()
       .$promise
       .then(function(res){
-        console.log(res);
         $scope.children = res.data;
       }, function(err){
         console.log(err);
       }).finally(function(){
-        $scope.isLoading = false;
-        console.info('finished...');
+        $rootScope.isLoading = false;
       })
     }
 

@@ -2,18 +2,18 @@
 
 /* Controller */
   // Child controller ( For individual Child )
-app.controller('ChildController', ['$scope', '$stateParams', '$http', 'Children', function($scope, $stateParams, $http, Children) {
+app.controller('ChildController', ['$rootScope', '$scope', '$stateParams', '$http', 'Children', function($rootScope, $scope, $stateParams, $http, Children) {
     var childId = $stateParams.childId;
 
     getChild();
     getContacts();
-
+    
     /**
      * getChild Get Child details
      * @return void
      */
     function getChild(){
-      $scope.isLoading = true;
+      $rootScope.isLoading = true;
       Children.get({ childId: childId })
       .$promise
       .then(function(res){
@@ -21,7 +21,7 @@ app.controller('ChildController', ['$scope', '$stateParams', '$http', 'Children'
       }, function(err){
         console.log(err);
       }).finally(function(){
-        $scope.isLoading = false;
+        $rootScope.isLoading = false;
       })
     }
 
@@ -31,7 +31,7 @@ app.controller('ChildController', ['$scope', '$stateParams', '$http', 'Children'
      */
     function getContacts(){
       var contacts = [];
-      $scope.isLoading = true;
+      $rootScope.isLoading = true;
       Children.contacts({ childId: childId })
       .$promise
       .then(function(res){
@@ -59,7 +59,7 @@ app.controller('ChildController', ['$scope', '$stateParams', '$http', 'Children'
       }, function(err){
         console.log(err);
       }).finally(function(){
-        $scope.isLoading = false;
+        $rootScope.isLoading = false;
       });
     }
 
