@@ -13,7 +13,7 @@ app.run(
           $rootScope.$on('$stateChangeError', function () {
             // Redirect user to our login page
             $state.go('access.signin');
-          });        
+          });
       }
     ]
   )
@@ -124,8 +124,36 @@ app.run(
               //Children
               .state('app.children', {
                   url: '/children',
-                  templateUrl: 'views/children/children.html',
+                  templateUrl: 'views/children/children/children.html',
                   controller: 'ChildrenController'
+              })
+
+              //Create
+              .state('create', {
+                  abstract: true,
+                  url: '/create',
+                  templateUrl: 'views/app.html',
+                  controller: function($rootScope){
+                      $rootScope.isLoading = false;
+                  },  
+                  resolve: {
+                    authenticated: authenticated
+                  }
+              })
+
+              //Create Child
+              .state('create.child', {
+                  url: '/child',
+                  templateUrl: 'views/children/children/create.html',
+                  controller: 'ChildController',
+                  resolve: {
+                      deps: ['uiLoad',
+                        function( uiLoad ){
+                          return uiLoad.load( [
+                            'js/controllers/children/child.js', 
+                            'js/services/children/children.js'] );
+                      }]
+                  }
               })
 
               //Child
@@ -159,11 +187,15 @@ app.run(
               .state('app.child.notes', {
                   url: '/notes',
                   templateUrl: 'views/children/notes/notes.html',
+                  controller: 'ChildrenNotesController',
                   resolve: {
                       deps: ['uiLoad',
                         function( uiLoad ){
-                          return uiLoad.load( ['js/app/note/note.js',
-                                               JQ_CONFIG.moment] );
+                          return uiLoad.load( [
+                            'js/app/note/note.js',
+                            JQ_CONFIG.moment,
+                            'js/controllers/children/notes/notes.js'
+                          ] );
                       }]
                   }
               })

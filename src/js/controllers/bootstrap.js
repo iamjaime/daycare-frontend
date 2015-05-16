@@ -236,7 +236,7 @@
     };
   }])
   ; 
-  app.controller('DatepickerDemoCtrl', ['$scope', function($scope) {
+  app.controller('DatepickerCtrl', ['$scope', function($scope) {
     $scope.today = function() {
       $scope.dt = new Date();
     };
@@ -259,7 +259,6 @@
     $scope.open = function($event) {
       $event.preventDefault();
       $event.stopPropagation();
-
       $scope.opened = true;
     };
 
@@ -271,9 +270,10 @@
 
     $scope.initDate = new Date('2016-15-20');
     $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
-    $scope.format = $scope.formats[0];
-  }])
-  ; 
+    $scope.format = $scope.formats[3];
+  
+  }]); 
+
   app.controller('TimepickerDemoCtrl', ['$scope', function($scope) {
     $scope.mytime = new Date();
 

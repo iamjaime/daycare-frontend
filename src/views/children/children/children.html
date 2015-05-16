@@ -1,7 +1,17 @@
 <div class="bg-light lter b-b wrapper-md">
-  <h1 class="m-n font-thin h3">Children</h1>
+  <h1 class="m-n font-thin h3">Children
+  	<!--Begin Create Child Modal-->
+  <span ng-controller="CreateChildModalCtrl">
+	  <script type="text/ng-template" id="createChildren.html">
+	    <div ng-include="'views/children/children/create.html'"></div>
+	  </script>
+  	<button ng-click="open('lg')" class="btn pull-right btn-rounded btn-icon btn-default">
+		<i class="fa fa-child"></i>
+	</button>
+  </span>
+  <!--End Create Child Modal-->
+  </h1>
 </div>
-
 <div class="wrapper-md">
 
 	<div class="row">
@@ -45,9 +55,15 @@
 	          	<div class="col-sm-12">
 	          		
 	          		<div class="m">
-	          			<button class="btn btn-primary btn-addon btn-sm">
+	          			
+	          			<button ng-click="checkin(child, $index)" ng-hide="child.checkins" class="btn btn-primary btn-addon btn-sm">
 			          		<i class="glyphicon glyphicon-new-window"></i>
 			          		Checkin
+		          		</button>
+
+	          			<button ng-click="checkout(child, $index)" ng-show="child.checkins" class="btn btn-danger btn-addon btn-sm">
+			          		<i class="glyphicon glyphicon-new-window"></i>
+			          		Checkout
 		          		</button>
 		          		
 		          		<button ui-sref="app.child.dashboard({ childId: child.id })" class="btn btn-primary btn-addon btn-sm">

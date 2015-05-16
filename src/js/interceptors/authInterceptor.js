@@ -21,7 +21,9 @@ app.factory('AuthInterceptor', function ($q, $injector, $cookieStore) {
                 $cookieStore.remove('usrFacility');
                 $cookieStore.remove('usr');
             }
+            
             return response || $q.when(response);
+
          },
          responseError: function(rejection) {
 

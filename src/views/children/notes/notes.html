@@ -7,10 +7,17 @@
 		<!--Sidebar-->
 		<div class="col-md-3">
 			<div class="list-group no-radius alt">
-              <a class="list-group-item" href="">
-                <i class="glyphicon glyphicon-list-alt fa-fw text-muted"></i> 
-                New Note
-              </a>
+              
+              	 <!--Begin Create Child Modal-->
+				  <a class="list-group-item" ng-click="open('md')">
+	                <i class="glyphicon glyphicon-list-alt fa-fw text-muted"></i> 
+	                New Note
+				    <script type="text/ng-template" id="createNote.html">
+					    <div ng-include="'views/children/notes/create.html'"></div>
+					  </script>
+				  </a>
+				  <!--End Create Child Modal-->
+              
             </div>
 		</div>
 		<!--End Sidebar-->
@@ -59,28 +66,18 @@
 		          </tr>
 		        </thead>
 		        <tbody>
-		          <tr>
+		          <tr ng-repeat="note in notes">
 		            <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
-		            <td>Jul 25, 2015 at 10:21am</td>
-		            <td>Diaper Rash</td>
-		            <td>Noticed Diaper rash on child's bottom.</td>
+		            <td>{{ note.created_at }}</td>
+		            <td>{{ note.title }}</td>
+		            <td>{{ note.note }}</td>
 		            <td>
 		              <!--
 		              <a class="btn btn-rounded btn-icon btn-primary btn-sm"> <i class="fa fa-eye"></i> </a>
 		              -->
 		            </td>
 		          </tr>
-		          <tr>
-		            <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
-		            <td>Jul 25, 2015 at 11:32am</td>
-		            <td>Lunch Time</td>
-		            <td>Child Did not eat well during lunch today.</td>
-		            <td>
-		              <!--
-		              <a class="btn btn-rounded btn-icon btn-primary btn-sm"> <i class="fa fa-eye"></i> </a>
-		              -->
-		            </td>
-		          </tr>
+		          
 		        </tbody>
 		      </table>
 		    </div>

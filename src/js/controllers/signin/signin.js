@@ -16,6 +16,7 @@ app.controller('SigninFormController', ['$scope', 'Signin', '$state', '$cookieSt
         console.log(res);
         //Set admin cookie
         $cookieStore.put('usr', res.data.id);
+        $cookieStore.put('usrType', res.data.role);
         $state.go('facilities');
       }, function(err){
         //get errors and output them...

@@ -63,4 +63,19 @@ app.controller('ChildController', ['$rootScope', '$scope', '$stateParams', '$htt
       });
     }
 
+
+    $scope.updateChild = function(){
+        $rootScope.isLoading = true;
+        Children.update({ childId: childId }, $scope.child)
+        .$promise
+        .then(function(res){
+          console.log(res);
+        }, function(err){
+          console.log(err);
+        })
+        .finally(function(){
+          $rootScope.isLoading = false;
+        });
+    };
+
 }]);

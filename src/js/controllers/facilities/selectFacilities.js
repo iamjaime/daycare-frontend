@@ -2,7 +2,7 @@
 
 /* Controllers */
   // selectFacilityController
-app.controller('SelectFacilityController', ['$scope', '$state', '$cookieStore', 'Facility', function($scope, $state, $cookieStore, Facility) {
+app.controller('SelectFacilityController', ['$rootScope', '$scope', '$state', '$cookieStore', 'Facility', function($rootScope, $scope, $state, $cookieStore, Facility) {
   
   var userId = $cookieStore.get('usr');
 
@@ -25,7 +25,7 @@ app.controller('SelectFacilityController', ['$scope', '$state', '$cookieStore', 
    * @return Response
    */
   function getFacilities(){
-    $scope.isLoading = true;
+    $rootScope.isLoading = true;
     Facility.allFromUser({userId : userId})
     .$promise
     .then(function(res){
@@ -34,7 +34,7 @@ app.controller('SelectFacilityController', ['$scope', '$state', '$cookieStore', 
     }, function(err){
       console.log(err);
     }).finally(function(){
-      $scope.isLoading = false;
+      $rootScope.isLoading = false;
     })
   }
   /**

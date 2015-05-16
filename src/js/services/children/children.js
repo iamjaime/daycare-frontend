@@ -4,7 +4,7 @@ var app = angular.module('app');
 
 app.factory('Children', ['$resource', function ($resource) {
          
-      return $resource(API_END_POINT + '/child/:childId', { childId: '@childId' },
+      return $resource(API_END_POINT + '/child/:childId', null,
       {
         get: {
           method: 'GET'
@@ -16,24 +16,41 @@ app.factory('Children', ['$resource', function ($resource) {
             }
         },
         update: {
-            method: 'PUT',//PATCH giving errors
+            method: 'PUT',
             transformRequest: function (data) {
                return JSON.stringify({'data': data});
             }
         },
-        restore: {
-          url: API_END_POINT + '/admin/events/:eventId/restore',
-          method: 'PATCH'
-        },
-        archived: {
-           url: API_END_POINT + '/admin/events/?include=archived',
-           method: 'GET'
-        },
-
         contacts: {
           url: API_END_POINT + '/child/:childId/contacts',
           method: 'GET'
-        }
+        },
+
+        checkin: {
+          url : API_END_POINT + '/child/:childId/checkin',
+          method: 'POST',
+          transformRequest: function (data) {
+             return JSON.stringify({'data': data});
+          }
+        },
+        checkout: {
+          url : API_END_POINT + '/child/:childId/checkout',
+          method: 'POST',
+          transformRequest: function (data) {
+             return JSON.stringify({'data': data});
+          }
+        },
+        makeNote: {
+          url : API_END_POINT + '/note',
+          method : 'POST',
+          transformRequest: function (data) {
+            return JSON.stringify({ 'data' : data });
+          }
+        },
+        getNotes: {
+          url: API_END_POINT + '/note/child/:childId',
+          method: 'GET'
+        },
 
       });
    }

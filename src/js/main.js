@@ -3,8 +3,12 @@
 /* Controllers */
 
 angular.module('app')
-  .controller('AppCtrl', ['$scope', '$translate', '$localStorage', '$window', '$cookieStore', '$state',
-    function( $scope,   $translate,   $localStorage,   $window, $cookieStore, $state) {
+  .controller('AppCtrl', ['$rootScope', '$scope', '$translate', '$localStorage', '$window', '$cookieStore', '$state', 'User',
+    function($rootScope,  $scope,   $translate,   $localStorage,   $window, $cookieStore, $state, User) {
+      
+      //get user info
+      getUser();
+
       // add 'ie' classes to html
       var isIE = !!navigator.userAgent.match(/MSIE/i);
       isIE && angular.element($window.document.body).addClass('ie');
@@ -80,7 +84,37 @@ angular.module('app')
       $scope.logout = function(){
           $cookieStore.remove('usr');
           $cookieStore.remove('usrFacility');
+          $cookieStore.remove('usrType');
           $state.go('access.signin');
       };
+
+      /**
+       * getUser Get the user details
+       * @return void
+       */
+      function getUser(){
+        var userId = $cookieStore.get('usr');
+        $rootScope.isLoading = true;
+        User.get({ userId: userId })
+        .$promise
+        .then(function(res){
+          $rootScope.user = res.data;
+          switch(res.data.role){
+            case 'parent':
+            $rootScope.user.parent = true;
+            break;
+            case 'staff':
+            $rootScope.user.staff = true;
+            break;
+            case 'admin':
+            $rootScope.user.admin = true;
+            break;
+          }
+        }, function(err){
+          console.log(err);
+        }).finally(function(){
+          $rootScope.isLoading = false;
+        });
+      }
 
   }]);
