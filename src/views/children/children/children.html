@@ -34,12 +34,12 @@
 		            <div class="col padder-v">
 		            	<div class="w-sm">
 		            		<label class="label bg-primary m-l-xs">Registered On:</label>
-		            		<p>{{ child.created_at }}</p>
+		            		<p>{{ child.created_at | dateToISO | date : 'short' }}</p>
 		            	</div>
 
 		            	<div class="w-sm">
 		            		<label class="label bg-primary m-l-xs">Birthday:</label>
-		            		<p>{{ child.dob }}</p>
+		            		<p>{{ child.dob  | dateToISO | date : 'shortDate' }}</p>
 		            	</div>
 
 		            	<div class="w-sm">

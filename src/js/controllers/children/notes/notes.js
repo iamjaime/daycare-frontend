@@ -11,7 +11,7 @@ app.controller('ChildrenNotesController', ['$rootScope', '$scope', '$modal', 'Ch
 
   function getNotes(){
     $rootScope.isLoading = true;
-    Children.getNotes({ childId: childId }, { childId: childId })
+    Children.getNotes({ childId: childId })
     .$promise
     .then(function(res){
       console.log(res);

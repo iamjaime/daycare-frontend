@@ -68,9 +68,9 @@
 		        <tbody>
 		          <tr ng-repeat="note in notes">
 		            <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
-		            <td>{{ note.created_at }}</td>
+		            <td>{{ note.created_at | dateToISO | date : 'short' }}</td>
 		            <td>{{ note.title }}</td>
-		            <td>{{ note.note }}</td>
+		            <td ng-bind-html="note.note"></td>
 		            <td>
 		              <!--
 		              <a class="btn btn-rounded btn-icon btn-primary btn-sm"> <i class="fa fa-eye"></i> </a>
