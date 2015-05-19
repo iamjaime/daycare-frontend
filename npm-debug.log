@@ -1,0 +1,142 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'install', '-g', 'jasmine' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.35
+4 verbose cache add [ 'jasmine', null ]
+5 verbose cache add name=undefined spec="jasmine" args=["jasmine",null]
+6 verbose parsed url { protocol: null,
+6 verbose parsed url   slashes: null,
+6 verbose parsed url   auth: null,
+6 verbose parsed url   host: null,
+6 verbose parsed url   port: null,
+6 verbose parsed url   hostname: null,
+6 verbose parsed url   hash: null,
+6 verbose parsed url   search: null,
+6 verbose parsed url   query: null,
+6 verbose parsed url   pathname: 'jasmine',
+6 verbose parsed url   path: 'jasmine',
+6 verbose parsed url   href: 'jasmine' }
+7 silly lockFile 5bfd08bd-jasmine jasmine
+8 verbose lock jasmine /Users/kuromii/.npm/5bfd08bd-jasmine.lock
+9 silly lockFile 5bfd08bd-jasmine jasmine
+10 silly lockFile 5bfd08bd-jasmine jasmine
+11 verbose addNamed [ 'jasmine', '' ]
+12 verbose addNamed [ null, '*' ]
+13 silly lockFile fdd358a6-jasmine jasmine@
+14 verbose lock jasmine@ /Users/kuromii/.npm/fdd358a6-jasmine.lock
+15 silly addNameRange { name: 'jasmine', range: '*', hasData: false }
+16 verbose request where is /jasmine
+17 verbose request registry https://registry.npmjs.org/
+18 verbose request id 1b1c63e3b939112f
+19 verbose url raw /jasmine
+20 verbose url resolving [ 'https://registry.npmjs.org/', './jasmine' ]
+21 verbose url resolved https://registry.npmjs.org/jasmine
+22 verbose request where is https://registry.npmjs.org/jasmine
+23 info trying registry request attempt 1 at 12:43:28
+24 http GET https://registry.npmjs.org/jasmine
+25 http 200 https://registry.npmjs.org/jasmine
+26 silly registry.get cb [ 200,
+26 silly registry.get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+26 silly registry.get     etag: '"2187E4LM5RD9A73SKVA7KQ0S9"',
+26 silly registry.get     'content-type': 'application/json',
+26 silly registry.get     'cache-control': 'max-age=60',
+26 silly registry.get     'content-length': '10439',
+26 silly registry.get     'accept-ranges': 'bytes',
+26 silly registry.get     date: 'Mon, 18 May 2015 16:43:29 GMT',
+26 silly registry.get     via: '1.1 varnish',
+26 silly registry.get     age: '3',
+26 silly registry.get     connection: 'keep-alive',
+26 silly registry.get     'x-served-by': 'cache-jfk1022-JFK',
+26 silly registry.get     'x-cache': 'HIT',
+26 silly registry.get     'x-cache-hits': '1',
+26 silly registry.get     'x-timer': 'S1431967409.181513,VS0,VE0',
+26 silly registry.get     vary: 'Accept' } ]
+27 silly addNameRange number 2 { name: 'jasmine', range: '*', hasData: true }
+28 silly addNameRange versions [ 'jasmine',
+28 silly addNameRange   [ '2.0.1', '2.1.0', '2.1.1', '2.2.0', '2.2.1', '2.3.0', '2.3.1' ] ]
+29 verbose addNamed [ 'jasmine', '2.3.1' ]
+30 verbose addNamed [ '2.3.1', '2.3.1' ]
+31 silly lockFile c5df5fbd-jasmine-2-3-1 jasmine@2.3.1
+32 verbose lock jasmine@2.3.1 /Users/kuromii/.npm/c5df5fbd-jasmine-2-3-1.lock
+33 silly lockFile 631afc0a-js-org-jasmine-jasmine-2-3-1-tgz https://registry.npmjs.org/jasmine/-/jasmine-2.3.1.tgz
+34 verbose lock https://registry.npmjs.org/jasmine/-/jasmine-2.3.1.tgz /Users/kuromii/.npm/631afc0a-js-org-jasmine-jasmine-2-3-1-tgz.lock
+35 verbose addRemoteTarball [ 'https://registry.npmjs.org/jasmine/-/jasmine-2.3.1.tgz',
+35 verbose addRemoteTarball   '4b2a4923d9c0472f6f66d38a11cca0c6d6070bda' ]
+36 info retry fetch attempt 1 at 12:43:29
+37 verbose fetch to= /var/folders/0j/hqxqhhz52ys_g0mq5k5sxh480000gn/T/npm-65917-DdHb7mty/registry.npmjs.org/jasmine/-/jasmine-2.3.1.tgz
+38 http GET https://registry.npmjs.org/jasmine/-/jasmine-2.3.1.tgz
+39 http 200 https://registry.npmjs.org/jasmine/-/jasmine-2.3.1.tgz
+40 silly lockFile 631afc0a-js-org-jasmine-jasmine-2-3-1-tgz https://registry.npmjs.org/jasmine/-/jasmine-2.3.1.tgz
+41 silly lockFile 631afc0a-js-org-jasmine-jasmine-2-3-1-tgz https://registry.npmjs.org/jasmine/-/jasmine-2.3.1.tgz
+42 silly lockFile c5df5fbd-jasmine-2-3-1 jasmine@2.3.1
+43 silly lockFile c5df5fbd-jasmine-2-3-1 jasmine@2.3.1
+44 silly lockFile fdd358a6-jasmine jasmine@
+45 silly lockFile fdd358a6-jasmine jasmine@
+46 silly resolved [ { name: 'jasmine',
+46 silly resolved     description: 'Command line jasmine',
+46 silly resolved     homepage: 'http://jasmine.github.io/',
+46 silly resolved     keywords: [ 'test', 'jasmine', 'tdd', 'bdd' ],
+46 silly resolved     license: 'MIT',
+46 silly resolved     version: '2.3.1',
+46 silly resolved     repository: { type: 'git', url: 'https://github.com/jasmine/jasmine-npm' },
+46 silly resolved     scripts: { test: 'grunt && ./bin/jasmine.js' },
+46 silly resolved     dependencies: { exit: '^0.1.2', glob: '^3.2.11', 'jasmine-core': '~2.3.0' },
+46 silly resolved     bin: { jasmine: './bin/jasmine.js' },
+46 silly resolved     main: './lib/jasmine.js',
+46 silly resolved     devDependencies:
+46 silly resolved      { grunt: '^0.4.2',
+46 silly resolved        'grunt-cli': '^0.1.13',
+46 silly resolved        'grunt-contrib-jshint': '^0.11.0',
+46 silly resolved        shelljs: '^0.3.0' },
+46 silly resolved     gitHead: '12e9ba5979d18d5f208d04c23cc9061af885cebb',
+46 silly resolved     bugs: { url: 'https://github.com/jasmine/jasmine-npm/issues' },
+46 silly resolved     _id: 'jasmine@2.3.1',
+46 silly resolved     _shasum: '4b2a4923d9c0472f6f66d38a11cca0c6d6070bda',
+46 silly resolved     _from: 'jasmine@',
+46 silly resolved     _npmVersion: '2.5.1',
+46 silly resolved     _nodeVersion: '1.4.1',
+46 silly resolved     _npmUser: { name: 'amavisca', email: 'chris.amavisca@gmail.com' },
+46 silly resolved     maintainers: [ [Object], [Object], [Object] ],
+46 silly resolved     dist:
+46 silly resolved      { shasum: '4b2a4923d9c0472f6f66d38a11cca0c6d6070bda',
+46 silly resolved        tarball: 'http://registry.npmjs.org/jasmine/-/jasmine-2.3.1.tgz' },
+46 silly resolved     directories: {},
+46 silly resolved     _resolved: 'https://registry.npmjs.org/jasmine/-/jasmine-2.3.1.tgz' } ]
+47 info install jasmine@2.3.1 into /usr/local/lib
+48 info installOne jasmine@2.3.1
+49 verbose lib/node_modules/jasmine unbuild
+50 verbose tar unpack /Users/kuromii/.npm/jasmine/2.3.1/package.tgz
+51 silly lockFile e079703c-r-local-lib-node-modules-jasmine tar:///usr/local/lib/node_modules/jasmine
+52 verbose lock tar:///usr/local/lib/node_modules/jasmine /Users/kuromii/.npm/e079703c-r-local-lib-node-modules-jasmine.lock
+53 silly lockFile c93082d6-ii-npm-jasmine-2-3-1-package-tgz tar:///Users/kuromii/.npm/jasmine/2.3.1/package.tgz
+54 verbose lock tar:///Users/kuromii/.npm/jasmine/2.3.1/package.tgz /Users/kuromii/.npm/c93082d6-ii-npm-jasmine-2-3-1-package-tgz.lock
+55 silly gunzTarPerm modes [ '755', '644' ]
+56 error Error: EACCES, mkdir '/usr/local/lib/node_modules/jasmine'
+56 error  { [Error: EACCES, mkdir '/usr/local/lib/node_modules/jasmine']
+56 error   errno: 3,
+56 error   code: 'EACCES',
+56 error   path: '/usr/local/lib/node_modules/jasmine',
+56 error   fstream_type: 'Directory',
+56 error   fstream_path: '/usr/local/lib/node_modules/jasmine',
+56 error   fstream_class: 'DirWriter',
+56 error   fstream_stack:
+56 error    [ '/usr/local/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:36:23',
+56 error      '/usr/local/lib/node_modules/npm/node_modules/mkdirp/index.js:46:53',
+56 error      'Object.oncomplete (fs.js:108:15)' ] }
+57 error Please try running this command again as root/Administrator.
+58 error System Darwin 13.3.0
+59 error command "node" "/usr/local/bin/npm" "install" "-g" "jasmine"
+60 error cwd /Applications/MAMP/htdocs/daycare
+61 error node -v v0.10.35
+62 error npm -v 1.4.28
+63 error path /usr/local/lib/node_modules/jasmine
+64 error fstream_path /usr/local/lib/node_modules/jasmine
+65 error fstream_type Directory
+66 error fstream_class DirWriter
+67 error code EACCES
+68 error errno 3
+69 error stack Error: EACCES, mkdir '/usr/local/lib/node_modules/jasmine'
+70 error fstream_stack /usr/local/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:36:23
+70 error fstream_stack /usr/local/lib/node_modules/npm/node_modules/mkdirp/index.js:46:53
+70 error fstream_stack Object.oncomplete (fs.js:108:15)
+71 verbose exit [ 3, true ]

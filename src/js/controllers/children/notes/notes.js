@@ -9,12 +9,15 @@ app.controller('ChildrenNotesController', ['$rootScope', '$scope', '$modal', 'Ch
 
   getNotes();
 
+  /**
+   * getNotes Handles getting all of the notes for a specified child.
+   * @return void
+   */
   function getNotes(){
     $rootScope.isLoading = true;
-    Children.getNotes({ childId: childId })
+    Children.getAllNotes({ childId: childId })
     .$promise
     .then(function(res){
-      console.log(res);
       $scope.notes = res.data;
     }, function(err){
       console.log(err);
@@ -23,6 +26,31 @@ app.controller('ChildrenNotesController', ['$rootScope', '$scope', '$modal', 'Ch
     });
   }
 
+  /**
+   * deleteNote Delete the note
+   * @param  object note   The note object
+   * @param  int    index  The object index 
+   * @return void
+   */
+  $scope.deleteNote = function(note, index){
+    var noteId = note.id;
+    $rootScope.isLoading = true;
+    Children.deleteNote({ noteId: noteId })
+    .$promise
+    .then(function(res){
+      $scope.notes.splice(index, 1);
+    }, function(err){
+      console.log(err);
+    }).finally(function(){
+      $rootScope.isLoading = false;
+    });
+  };
+
+  /**
+   * open Opens a new modal box
+   * @param  string  size  The size of the model (ex: large = lg, medium = md, small = sm)
+   * @return void
+   */
   $scope.open = function (size) {
     var modalInstance = $modal.open({
       templateUrl: 'createNote.html',

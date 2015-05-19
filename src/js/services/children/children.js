@@ -47,10 +47,18 @@ app.factory('Children', ['$resource', function ($resource) {
             return JSON.stringify({ 'data' : data });
           }
         },
-        getNotes: {
+        getNote: {
+          url : API_END_POINT + '/note/:noteId',
+          method : 'GET'
+        },
+        getAllNotes: {
           url: API_END_POINT + '/note/child/:childId',
           method: 'GET'
         },
+        deleteNote: {
+          url : API_END_POINT + '/note/:noteId',
+          method : 'DELETE'
+        }
 
       });
    }

@@ -55,7 +55,6 @@ app.controller('ChildController', ['$rootScope', '$scope', '$stateParams', '$htt
         };
 
         $scope.contacts = contacts;
-        console.log($scope.contacts);
       }, function(err){
         console.log(err);
       }).finally(function(){
@@ -63,7 +62,10 @@ app.controller('ChildController', ['$rootScope', '$scope', '$stateParams', '$htt
       });
     }
 
-
+    /**
+     * updateChild Updates a specific child's details
+     * @return void
+     */
     $scope.updateChild = function(){
         $rootScope.isLoading = true;
         Children.update({ childId: childId }, $scope.child)
