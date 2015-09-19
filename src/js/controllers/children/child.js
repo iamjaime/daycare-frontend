@@ -39,18 +39,13 @@ app.controller('ChildController', ['$rootScope', '$scope', '$stateParams', '$htt
       Children.contacts({ childId: childId })
       .$promise
       .then(function(res){
-        
-        var parents = res.data.parents;
-        var emergency = res.data.emergency;
+       var pickupContacts = [];
+       $scope.contacts = res.data;
 
-        angular.forEach(parents, function(val, key){
-          val.type = 'parent';
-          contacts.push(val);
-        });
-        
-        angular.forEach(emergency, function(val, key){
-          val.type = 'emergency';
-          contacts.push(val);
+        angular.forEach(res.data, function(val, key){
+          if(!val.pickup){
+            pickupContacts.push(val);
+          }
         });
 
         $scope.tag = {
@@ -58,13 +53,15 @@ app.controller('ChildController', ['$rootScope', '$scope', '$stateParams', '$htt
           "bg-danger" : contacts.type == "emergency"
         };
 
-        $scope.contacts = contacts;
+        $scope.pickupContacts = pickupContacts;
+
       }, function(err){
         console.log(err);
       }).finally(function(){
         $rootScope.isLoading = false;
       });
     }
+
 
     /**
      * removeAuthPickup  Unauthorizes the contact from picking up child.
