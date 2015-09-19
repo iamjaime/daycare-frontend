@@ -7,10 +7,17 @@
 		<!--Sidebar-->
 		<div class="col-md-3">
 			<div class="list-group no-radius alt">
-              <a class="list-group-item" href="">
-                <i class="glyphicon glyphicon-list-alt fa-fw text-muted"></i> 
-                New Note
-              </a>
+              
+              	 <!--Begin Create Child Modal-->
+				  <a class="list-group-item" ng-click="open('md')">
+	                <i class="glyphicon glyphicon-list-alt fa-fw text-muted"></i> 
+	                New Note
+				    <script type="text/ng-template" id="createNote.html">
+					    <div ng-include="'views/children/notes/create.html'"></div>
+					  </script>
+				  </a>
+				  <!--End Create Child Modal-->
+              
             </div>
 		</div>
 		<!--End Sidebar-->
@@ -24,6 +31,7 @@
 		    </div>
 		    <div class="row wrapper">
 		      <div class="col-sm-5 m-b-xs">
+		      <!--
 		        <select class="input-sm form-control w-sm inline v-middle">
 		          <option value="0">Bulk action</option>
 		          <option value="1">Delete selected</option>
@@ -31,12 +39,13 @@
 		          <option value="3">Export</option>
 		        </select>
 		        <button class="btn btn-sm btn-default">Apply</button>                
+		      -->
 		      </div>
 		      <div class="col-sm-4">
 		      </div>
 		      <div class="col-sm-3">
 		        <div class="input-group">
-		          <input type="text" class="input-sm form-control" placeholder="Search">
+		          <input type="text" class="input-sm form-control" ng-model="search" placeholder="Search">
 		          <span class="input-group-btn">
 		            <button class="btn btn-sm btn-default" type="button">Go!</button>
 		          </span>
@@ -47,11 +56,13 @@
 		      <table class="table table-striped b-t b-light">
 		        <thead>
 		          <tr>
+		            <!--
 		            <th style="width:20px;">
 		              <label class="i-checks m-b-none">
 		                <input type="checkbox"><i></i>
 		              </label>
 		            </th>
+		            -->
 		            <th>Date</th>
 		            <th>Note Title</th>
 		            <th>Note</th>
@@ -59,34 +70,25 @@
 		          </tr>
 		        </thead>
 		        <tbody>
-		          <tr>
+		          <tr ng-repeat="note in notes | filter: search: strict">
+		            <!--
 		            <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
-		            <td>Jul 25, 2015 at 10:21am</td>
-		            <td>Diaper Rash</td>
-		            <td>Noticed Diaper rash on child's bottom.</td>
+		            -->
+		            <td>{{ note.created_at | dateToISO | date : 'short' }}</td>
+		            <td>{{ note.title }}</td>
+		            <td ng-bind-html="note.note"></td>
 		            <td>
-		              <!--
-		              <a class="btn btn-rounded btn-icon btn-primary btn-sm"> <i class="fa fa-eye"></i> </a>
-		              -->
+		              <a ng-click="deleteNote(note, $index)" class="btn btn-rounded btn-icon btn-danger btn-sm"> <i class="fa fa-trash"></i></a>
 		            </td>
 		          </tr>
-		          <tr>
-		            <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
-		            <td>Jul 25, 2015 at 11:32am</td>
-		            <td>Lunch Time</td>
-		            <td>Child Did not eat well during lunch today.</td>
-		            <td>
-		              <!--
-		              <a class="btn btn-rounded btn-icon btn-primary btn-sm"> <i class="fa fa-eye"></i> </a>
-		              -->
-		            </td>
-		          </tr>
+		          
 		        </tbody>
 		      </table>
 		    </div>
 		    <footer class="panel-footer">
 		      <div class="row">
 		        <div class="col-sm-4 hidden-xs">
+		        <!--
 		          <select class="input-sm form-control w-sm inline v-middle">
 		            <option value="0">Bulk action</option>
 		            <option value="1">Delete selected</option>
@@ -94,6 +96,7 @@
 		            <option value="3">Export</option>
 		          </select>
 		          <button class="btn btn-sm btn-default">Apply</button>                  
+		        -->
 		        </div>
 		        <div class="col-sm-4 text-center">
 		          <small class="text-muted inline m-t-sm m-b-sm">showing 20-30 of 50 items</small>

@@ -12,34 +12,68 @@
           <form role="form">
             <div class="form-group">
               <label>First Name</label>
-              <input type="text" class="form-control">
+              <input type="text" class="form-control" ng-model="child.first_name">
             </div>
             <div class="form-group">
               <label>Last Name</label>
-              <input type="text" class="form-control">
+              <input type="text" class="form-control" ng-model="child.last_name">
             </div>
+
             <div class="form-group">
-              <label>Birthday</label>
-              <input type="text" class="form-control">
-            </div>
-            <div class="form-group">
-              <label>SSN</label>
-              <input type="text" class="form-control">
-            </div>
-            <div class="form-group">
-              <label>Gender</label>
-              <input type="text" class="form-control">
-            </div>
-            <div class="form-group">
-              <label>Blood Type</label>
-              <input type="text" class="form-control">
-            </div>
-            <div class="form-group">
-              <label>Status</label>
-              <input type="text" class="form-control">
+              <label class="control-label">Date of Birth</label>
+              <div ng-controller="DatepickerCtrl">
+                <div class="input-group w-md">
+                  <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="child.dob" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                  <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                  </span>
+                </div>
+              </div>
             </div>
             
-            <button type="submit" class="btn btn-sm btn-primary">Update</button>
+            <div class="form-group">
+            <label>Gender</label>
+            <div class="row">              
+              <div class="col-sm-3">
+                <div class="radio">
+                  <label class="i-checks">
+                    <input type="radio" name="gender" ng-model="child.gender" value="male">
+                    <i></i>
+                   Male
+                  </label>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="radio">
+                  <label class="i-checks">
+                    <input type="radio" name="gender" ng-model="child.gender" value="female">
+                    <i></i>
+                   Female
+                  </label>
+                </div>
+              </div>
+            </div>
+                
+            </div>
+
+            <div class="form-group">
+              <label class="control-label">Blood Type</label>
+              <div>
+                <select name="blood_type" ng-model="child.blood_type" class="form-control m-b">
+                  <option>N/A</option>
+                  <option>O Negative</option>
+                  <option>O Positive</option>
+                  <option>A Negative</option>
+                  <option>A Positive</option>
+                  <option>B Negative</option>
+                  <option>B Positive</option>
+                  <option>AB Negative</option>
+                  <option>AB Positive</option>
+                </select>
+              </div>
+            </div>
+
+            <button type="submit" ng-click="updateChild()" class="btn btn-sm btn-primary">Update</button>
           </form>
         </div>
       </div>
@@ -59,37 +93,20 @@
               <h4 class="font-thin m-t-none m-b-none text-muted">Contacts</h4>              
             </div>
             <ul class="list-group list-group-lg m-b-none">
-              <li class="list-group-item">
+            <!--Begin Contacts List-->
+              <li class="list-group-item" ng-repeat="contact in contacts">
                 <a href class="thumb-sm m-r">
                   <img src="img/a1.jpg" class="r r-2x">
                 </a>
-                <span class="pull-right label bg-primary inline m-t-sm">Mom</span>
-                <a href>Florinda Bernal</a>
+                <span ng-if="contact.type == 'parent'" class="pull-right label bg-primary inline m-t-sm">{{ contact.relationship }}</span>
+                <span ng-if="contact.type == 'emergency'" class="pull-right label bg-danger inline m-t-sm">{{ contact.relationship }}</span>
+                <a href>{{ contact.first_name }} {{ contact.last_name }}</a>
               </li>
-              <li class="list-group-item">
-                <a href class="thumb-sm m-r">
-                  <img src="img/a2.jpg" class="r r-2x">
-                </a>
-                <span class="pull-right label bg-primary inline m-t-sm">Dad</span>
-                <a href>William Bernal</a>
-              </li>
-              <li class="list-group-item">
-                <a href class="thumb-sm m-r">
-                  <img src="img/a3.jpg" class="r r-2x">
-                </a>
-                <span class="pull-right label bg-danger inline m-t-sm">Aunt</span>
-                <a href>Betty Cespendes</a>
-              </li>
-              <li class="list-group-item">
-                <a href class="thumb-sm m-r">
-                  <img src="img/a4.jpg" class="r r-2x">
-                </a>
-                <span class="pull-right label bg-danger inline m-t-sm">Brother</span>
-                <a href>William Bernal</a>
-              </li>
+            <!--End Contacts List-->  
             </ul>
+
             <div class="panel-footer clear">
-              <button class="btn btn-primary btn-addon btn-sm">
+              <button ng-click="addContactForm()" class="btn btn-primary btn-addon btn-sm">
 	              <i class="fa fa-plus"></i>Add Contact
               </button>
             </div>

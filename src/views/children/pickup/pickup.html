@@ -12,40 +12,25 @@
               <h4 class="font-thin m-t-none m-b-none text-muted">Authorized Contacts</h4>              
             </div>
             <ul class="list-group list-group-lg m-b-none">
-              <li class="list-group-item">
+              <li class="list-group-item" ng-repeat="person in authorizedPickup">
 	              <div class="row">
 	              	<div class="col-sm-2">
 	              		<a href class="thumb-sm m-r">
 		                  <img src="img/a1.jpg" class="r r-2x">
-		                </a>	
+                    </a>	
 	              	</div>
 	              	<div class="col-sm-8">
-	              		<a class="m-t-sm block">Florinda Bernal</a>
-	              	</div>
+	              		<a class="block">{{ person.first_name }} {{ person.last_name }}</a>
+                    <label class="label bg-primary">{{ person.relationship }}</label>
+                  </div>
 	              	<div class="col-sm-2">
-	              		<button class="btn pull-right btn-rounded btn-sm btn-icon btn-danger">
+	              		<button ng-click="removeAuthPickup()" class="btn pull-right btn-rounded btn-sm btn-icon btn-danger">
 		              		<i class="fa fa-trash"></i>
 	              		</button>
 	              	</div>
 	              </div>
               </li>
-              <li class="list-group-item">
-	              <div class="row">
-	              	<div class="col-sm-2">
-	              		<a href class="thumb-sm m-r">
-		                  <img src="img/a1.jpg" class="r r-2x">
-		                </a>	
-	              	</div>
-	              	<div class="col-sm-8">
-	              		<a class="m-t-sm block">William Bernal</a>
-	              	</div>
-	              	<div class="col-sm-2">
-	              		<button class="btn pull-right btn-rounded btn-sm btn-icon btn-danger">
-		              		<i class="fa fa-trash"></i>
-	              		</button>
-	              	</div>
-	              </div>
-              </li>
+              
             </ul>
             
           </div>

@@ -1,16 +1,26 @@
 <div class="bg-light lter b-b wrapper-md">
-  <h1 class="m-n font-thin h3">Children</h1>
+  <h1 class="m-n font-thin h3">Children
+  	<!--Begin Create Child Modal-->
+  <span ng-controller="CreateChildModalCtrl">
+	  <script type="text/ng-template" id="createChildren.html">
+	    <div ng-include="'views/children/children/create.html'"></div>
+	  </script>
+  	<button ng-click="open('lg')" class="btn pull-right btn-rounded btn-icon btn-default">
+		<i class="fa fa-child"></i>
+	</button>
+  </span>
+  <!--End Create Child Modal-->
+  </h1>
 </div>
-
 <div class="wrapper-md">
 
 	<div class="row">
 
-	<div class="col-md-4">
+	<div class="col-md-4" ng-repeat="child in children">
 		<div class="panel">
 	            <!--Widget Header Bar-->
 	            <div class="panel-heading bg-info dk no-border">
-	              <div class="h4 font-thin">Jaime Bernal</div>
+	              <div class="h4 font-thin">{{ child.first_name }} {{ child.last_name }}</div>
 	            </div>
 	           	
 				<!--Widget Body-->
@@ -24,12 +34,12 @@
 		            <div class="col padder-v">
 		            	<div class="w-sm">
 		            		<label class="label bg-primary m-l-xs">Registered On:</label>
-		            		<p>July 25, 2014</p>
+		            		<p>{{ child.created_at | dateToISO | date : 'short' }}</p>
 		            	</div>
 
 		            	<div class="w-sm">
 		            		<label class="label bg-primary m-l-xs">Birthday:</label>
-		            		<p>July 25, 1989</p>
+		            		<p>{{ child.dob  | dateToISO | date : 'shortDate' }}</p>
 		            	</div>
 
 		            	<div class="w-sm">
@@ -45,12 +55,18 @@
 	          	<div class="col-sm-12">
 	          		
 	          		<div class="m">
-	          			<button class="btn btn-primary btn-addon btn-sm">
+	          			
+	          			<button ng-click="checkin(child, $index)" ng-hide="child.checkins" class="btn btn-primary btn-addon btn-sm">
 			          		<i class="glyphicon glyphicon-new-window"></i>
 			          		Checkin
 		          		</button>
+
+	          			<button ng-click="checkout(child, $index)" ng-show="child.checkins" class="btn btn-danger btn-addon btn-sm">
+			          		<i class="glyphicon glyphicon-new-window"></i>
+			          		Checkout
+		          		</button>
 		          		
-		          		<button ui-sref="app.child.dashboard({ childId: 1 })" class="btn btn-primary btn-addon btn-sm">
+		          		<button ui-sref="app.child.dashboard({ childId: child.id })" class="btn btn-primary btn-addon btn-sm">
 			          		<i class="fa fa-folder-open"></i>
 			          		Open
 		          		</button>	

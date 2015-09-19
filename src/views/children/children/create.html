@@ -1,0 +1,83 @@
+<!-- Begin Create Child-->
+<div class="modal-body">
+  <!-- Begin Create Children -->
+	<div class="row">
+		<div class="col-md-12">
+			<div class="bg-light lter b-b wrapper-md">
+			  <h1 class="m-n font-thin h3">Create Children</h1>
+			</div>
+			<div class="wrapper-md">
+			  <tabset class="tab-container" ng-init="steps={percent:20, step1:true, step2:false, step3:false}">
+			    
+			    <tab heading="Step 1" active="steps.step1" select="steps.percent=10">
+			      <!--
+			      <progressbar value="steps.percent" class="progress-xs" type="success"></progressbar>
+			      -->
+			      <h4>Parent(s) Or Guardian(s)</h4>
+			      <form name="step1" class="form-validation">
+			        
+			        <div class="form-group">
+		            <label>Is the parent already a part of this system?</label>
+			            <div class="row">              
+			              <div class="col-sm-3">
+			                <div class="radio">
+			                  <label class="i-checks">
+			                    <input type="radio" name="inSystem" ng-model="parent.inSystem" value="true">
+			                    <i></i>
+			                   Yes
+			                  </label>
+			                </div>
+			              </div>
+			              <div class="col-sm-3">
+			                <div class="radio">
+			                  <label class="i-checks">
+			                    <input type="radio" name="inSystem" ng-model="parent.inSystem" value="false">
+			                    <i></i>
+			                   No
+			                  </label>
+			                </div>
+			              </div>
+			            </div>
+		            </div>
+
+		            <div ng-show="parent.inSystem">
+		            	<!--Search for parent(s) to attach to child(ren)-->
+		            	<p>Search For Parent(s):</p>
+				        <input type="email" name="email" class="form-control" ng-model="parent.email" required ng-change="step1.email.$valid ? (steps.percent=30) : (steps.percent=20)">	
+		            </div>
+			        
+			        
+			        <div class="m-t m-b">
+			          <button type="submit" ng-disabled="step1.$invalid" class="btn btn-default btn-rounded" ng-click="steps.step2=true">Next</button>
+			        </div>
+			      </form>
+			    </tab>
+			    
+			    <tab heading="Step 2" disabled="step1.$invalid" active="steps.step2" select="steps.percent=30">
+			      <form name="step2" class="form-validation">
+			        <p class="m-b">Continue the next step</p>
+			        <progressbar value="steps.percent" class="progress-xs" type="success"></progressbar>
+			        <p>Your age:</p>
+			        <input type="number" name="age" class="form-control" ng-model="age" required>
+			        <div class="m-t m-b">
+			          <button type="button" class="btn btn-default btn-rounded" ng-click="steps.step1=true">Prev</button>
+			          <button type="submit" ng-disabled="step2.$invalid" class="btn btn-default btn-rounded" ng-click="steps.step3=true">Next</button>
+			        </div>
+			      </form>
+			    </tab>
+			    <tab heading="Step 3" disabled="step2.$invalid" active="steps.step3" select="steps.percent=60">
+			      <p class="m-b">Congraduations! You got the last step.</p>
+			      <progressbar value="steps.percent" class="progress-xs" type="success"></progressbar>
+			      <p>Just one click to finish it.</p>
+			      <div class="m-t m-b">
+			        <button type="button" class="btn btn-default btn-rounded" ng-click="steps.step2=true">Prev</button>
+			        <button type="button" class="btn btn-default btn-rounded" ng-click="steps.percent=100">Click me to Finish</button>
+			      </div>
+			    </tab>
+			  </tabset>
+			</div>
+		</div>
+	</div>
+	<!--End Create Children-->
+</div>
+<!--End Create Child-->
