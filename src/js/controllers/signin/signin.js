@@ -10,7 +10,8 @@ app.controller('SigninFormController', ['$scope', 'Signin', '$state', '$cookieSt
      */
     $scope.login = function() {     
     $scope.isLoading = true; 
-      Signin.query($scope.user)
+    console.log($scope.user);
+      Signin.query({email : $scope.user.email, password: $scope.user.password })
       .$promise
       .then(function(res){
         console.log(res);

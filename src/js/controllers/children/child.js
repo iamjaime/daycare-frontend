@@ -18,6 +18,10 @@ app.controller('ChildController', ['$rootScope', '$scope', '$stateParams', '$htt
       .$promise
       .then(function(res){
         $scope.child = res.data;
+        $scope.authorizedPickup = res.data.authorized_pickup;
+        $scope.emergencyContacts = res.data.emergency_contacts;
+        $scope.parents = res.data.parents;
+        console.log($scope.child);
       }, function(err){
         console.log(err);
       }).finally(function(){
@@ -61,6 +65,14 @@ app.controller('ChildController', ['$rootScope', '$scope', '$stateParams', '$htt
         $rootScope.isLoading = false;
       });
     }
+
+    /**
+     * removeAuthPickup  Unauthorizes the contact from picking up child.
+     * @return void
+     */
+    $scope.removeAuthPickup = function(){
+      //do something
+    };
 
     /**
      * updateChild Updates a specific child's details
