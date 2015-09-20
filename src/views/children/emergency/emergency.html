@@ -12,37 +12,23 @@
               <h4 class="font-thin m-t-none m-b-none text-muted">Emergency Contacts</h4>              
             </div>
             <ul class="list-group list-group-lg m-b-none">
-              <li class="list-group-item">
+              <li class="list-group-item" ng-repeat="person in emergencyContacts">
 	              <div class="row">
 	              	<div class="col-md-2">
 	              		<a href class="thumb-sm m-r">
 		                  <img src="img/a1.jpg" class="r r-2x">
 		                </a>	
 	              	</div>
-	              	<div class="col-md-8">
-	              		<a class="block">Florinda Bernal</a>
+	              	<div class="col-md-4">
+	              		<a class="block">{{ person.first_name }} {{ person.last_name }}</a>
 	              		<div>
-	              			<small>4025 Hampton St. APT 3D, <br>
-	              			Elmhurst NY 11373</small>
+	              			<small>{{ person.address }}, <br>
+	              			{{ person.city }} {{ person.province }} {{ person.postal_code }}</small>
 	              		</div>
 	              	</div>
-	              	<div class="col-sm-2">
-	              		<button class="btn pull-right btn-rounded btn-sm btn-icon btn-danger">
-		              		<i class="fa fa-trash"></i>
-	              		</button>
-	              	</div>
-	              </div>
-              </li>
-              <li class="list-group-item">
-	              <div class="row">
-	              	<div class="col-sm-2">
-	              		<a href class="thumb-sm m-r">
-		                  <img src="img/a1.jpg" class="r r-2x">
-		                </a>	
-	              	</div>
-	              	<div class="col-sm-8">
-	              		<a class="m-t-sm block">William Bernal</a>
-	              	</div>
+                  <div class="col-md-4">
+                    <label class="label bg-danger">{{ person.pivot.relationship }}</label>
+                  </div>
 	              	<div class="col-sm-2">
 	              		<button class="btn pull-right btn-rounded btn-sm btn-icon btn-danger">
 		              		<i class="fa fa-trash"></i>
@@ -61,7 +47,7 @@
       <div class="panel panel-default">
         <div class="panel-heading font-bold">Contact Details</div>
         <div class="panel-body">
-          <form role="form">
+          <form role="form" ng-submit="createEmergencyContact()">
             <div class="form-group">
               <label>First Name</label>
               <input type="text" class="form-control">
@@ -79,6 +65,14 @@
               <input type="text" class="form-control">
             </div>
             <div class="form-group">
+              <label>State/Province</label>
+              <input type="text" class="form-control">
+            </div>
+            <div class="form-group">
+              <label>Postal Code</label>
+              <input type="text" class="form-control">
+            </div>
+            <div class="form-group">
               <label>Cell Phone</label>
               <input type="text" class="form-control">
             </div>
@@ -86,14 +80,10 @@
               <label>Relation</label>
               <input type="text" class="form-control">
             </div>
-            <div class="form-group">
-              <label>Pin Number</label>
-              <input type="text" class="form-control">
-            </div>
             
-           <button class="btn btn-primary btn-addon btn-sm">
-	              <i class="fa fa-plus"></i>Add Contact
-              </button>
+            <button type="submit" class="btn btn-primary btn-addon btn-sm">
+              <i class="fa fa-plus"></i>Add Contact
+            </button>
           </form>
         </div>
       </div>

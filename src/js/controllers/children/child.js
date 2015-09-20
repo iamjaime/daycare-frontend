@@ -39,18 +39,13 @@ app.controller('ChildController', ['$rootScope', '$scope', '$stateParams', '$htt
       Children.contacts({ childId: childId })
       .$promise
       .then(function(res){
-        
-        var parents = res.data.parents;
-        var emergency = res.data.emergency;
+       var pickupContacts = [];
+       $scope.contacts = res.data;
 
-        angular.forEach(parents, function(val, key){
-          val.type = 'parent';
-          contacts.push(val);
-        });
-        
-        angular.forEach(emergency, function(val, key){
-          val.type = 'emergency';
-          contacts.push(val);
+        angular.forEach(res.data, function(val, key){
+          if(!val.pickup){
+            pickupContacts.push(val);
+          }
         });
 
         $scope.tag = {
@@ -58,7 +53,8 @@ app.controller('ChildController', ['$rootScope', '$scope', '$stateParams', '$htt
           "bg-danger" : contacts.type == "emergency"
         };
 
-        $scope.contacts = contacts;
+        $scope.pickupContacts = pickupContacts;
+
       }, function(err){
         console.log(err);
       }).finally(function(){
@@ -67,11 +63,86 @@ app.controller('ChildController', ['$rootScope', '$scope', '$stateParams', '$htt
     }
 
     /**
-     * removeAuthPickup  Unauthorizes the contact from picking up child.
+     * isParent                 Checks if person is a parent
+     * @param  {string}  person The Person
+     * @return {Boolean}        is the person a parent?
+     */
+    function isParent(person){
+      if(person === "Dad" || person === "Mom"){
+        return true;
+      }
+      return false;
+    }
+
+
+    /**
+     * removeAuthPickup         Unauthorizes the contact from picking up child.
+     * @param  {object} person  The Contact
+     * @param  {int} index      The object index
      * @return void
      */
-    $scope.removeAuthPickup = function(){
-      //do something
+    $scope.removeAuthPickup = function(person, index){
+      $rootScope.isLoading = true;
+      var postData = {
+        isParent: isParent(person.relationship),
+        authorize: false,
+        contactId: person.id
+      };
+        Children.pickup({childId: childId}, postData)
+        .$promise
+        .then(function(res){
+          
+          $scope.authorizedPickup.splice(index, 1);
+          
+          if(isParent(person.relationship)){
+            person.type = "parent";
+          }else{
+            person.type = "emergency";
+          }
+
+          $scope.pickupContacts.unshift(person);
+
+        }, function(err){
+          console.log(err);
+        })
+        .finally(function(){
+          $rootScope.isLoading = false;
+        });
+    };
+
+    /**
+     * authorizePickup         authorizes the contact to pick up child.
+     * @param  {object} person  The Contact
+     * @param  {int} index      The object index
+     * @return void
+     */
+    $scope.authorizePickup = function(person, index){
+      $rootScope.isLoading = true;
+      var postData = {
+        isParent: isParent(person.relationship),
+        authorize: true,
+        contactId: person.id
+      };
+        Children.pickup({childId: childId}, postData)
+        .$promise
+        .then(function(res){
+          
+          $scope.pickupContacts.splice(index, 1);
+          
+          if(isParent(person.relationship)){
+            person.type = "parent";
+          }else{
+            person.type = "emergency";
+          }
+
+          $scope.authorizedPickup.push(person);
+
+        }, function(err){
+          console.log(err);
+        })
+        .finally(function(){
+          $rootScope.isLoading = false;
+        });
     };
 
     /**

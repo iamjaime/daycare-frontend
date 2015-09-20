@@ -21,6 +21,13 @@ app.factory('Children', ['$resource', function ($resource) {
                return JSON.stringify({'data': data});
             }
         },
+        pickup: {
+          url : API_END_POINT + '/child/:childId/pickup',
+          method: 'POST',
+          transformRequest: function (data) {
+             return JSON.stringify({'data': data});
+          }
+        },
         contacts: {
           url: API_END_POINT + '/child/:childId/contacts',
           method: 'GET'

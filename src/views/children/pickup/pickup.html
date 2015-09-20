@@ -9,7 +9,7 @@
 
           <div class="panel no-border">
             <div class="panel-heading wrapper b-b b-light">
-              <h4 class="font-thin m-t-none m-b-none text-muted">Authorized Contacts</h4>              
+              <h4 class="font-thin m-t-none m-b-none text-muted">Authorized To Pickup {{ child.first_name }}</h4>              
             </div>
             <ul class="list-group list-group-lg m-b-none">
               <li class="list-group-item" ng-repeat="person in authorizedPickup">
@@ -24,8 +24,8 @@
                     <label class="label bg-primary">{{ person.relationship }}</label>
                   </div>
 	              	<div class="col-sm-2">
-	              		<button ng-click="removeAuthPickup()" class="btn pull-right btn-rounded btn-sm btn-icon btn-danger">
-		              		<i class="fa fa-trash"></i>
+	              		<button ng-click="removeAuthPickup(person, $index)" class="btn pull-right btn-rounded btn-sm btn-icon btn-danger">
+		              		<i class="fa fa-minus"></i>
 	              		</button>
 	              	</div>
 	              </div>
@@ -39,46 +39,40 @@
 	<!--End Parent Details-->
 	<!--Begin Child Detail Form -->
 	<div class="col-md-6">	
-      <div class="panel panel-default">
-        <div class="panel-heading font-bold">Contact Details</div>
-        <div class="panel-body">
-          <form role="form">
-            <div class="form-group">
-              <label>First Name</label>
-              <input type="text" class="form-control">
-            </div>
-            <div class="form-group">
-              <label>Last Name</label>
-              <input type="text" class="form-control">
-            </div>
-            <div class="form-group">
-              <label>Address</label>
-              <input type="text" class="form-control">
-            </div>
-            <div class="form-group">
-              <label>City</label>
-              <input type="text" class="form-control">
-            </div>
-            <div class="form-group">
-              <label>Cell Phone</label>
-              <input type="text" class="form-control">
-            </div>
-            <div class="form-group">
-              <label>Relation</label>
-              <input type="text" class="form-control">
-            </div>
-            <div class="form-group">
-              <label>Pin Number</label>
-              <input type="text" class="form-control">
-            </div>
-            
-           <button class="btn btn-primary btn-addon btn-sm">
-	              <i class="fa fa-plus"></i>Add Contact
-              </button>
-          </form>
-        </div>
+    <!--Start Contacts-->
+    <div class="panel no-border">
+      <div class="panel-heading wrapper b-b b-light">
+        <span class="text-xs text-muted pull-right">
+          <i class="fa fa-circle text-primary m-r-xs"></i> Parent
+          <i class="fa fa-circle text-danger m-r-xs m-l-sm"></i> Emergency
+        </span>
+        <h4 class="font-thin m-t-none m-b-none text-muted">All Contacts</h4>              
       </div>
-    
+      <ul class="list-group list-group-lg m-b-none">
+      <!--Begin Contacts List-->
+        <li class="list-group-item" ng-repeat="contact in pickupContacts">
+        <div class="row">
+          <div class="col-md-2">
+            <a href class="thumb-sm m-r">
+              <img src="img/a1.jpg" class="r r-2x">
+            </a>
+          </div>
+          <div class="col-md-8">
+            <a href>{{ contact.first_name }} {{ contact.last_name }}</a>
+            <span ng-if="contact.type == 'parent'" class="pull-right label bg-primary inline m-t-sm">{{ contact.relationship }}</span>
+            <span ng-if="contact.type == 'emergency'" class="pull-right label bg-danger inline m-t-sm">{{ contact.relationship }}</span>  
+          </div>
+          <div class="col-md-2">
+            <button ng-click="authorizePickup(contact, $index)" class="btn pull-right btn-rounded btn-sm btn-icon btn-primary">
+              <i class="fa fa-plus"></i>
+            </button>
+          </div>  
+        </div>  
+        </li>
+      <!--End Contacts List-->  
+      </ul>
+    </div>
+    <!--End Contacts-->
 	</div>
 	<!--End Child Detail Form-->
 	</div><!--End col-md-12-->
