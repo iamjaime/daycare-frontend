@@ -2,7 +2,7 @@
 
 /* Controller */
   // Child controller ( For individual Child )
-app.controller('ChildController', ['$rootScope', '$scope', '$stateParams', '$http', 'Children', function($rootScope, $scope, $stateParams, $http, Children) {
+app.controller('ChildController', ['$rootScope', '$scope', '$stateParams', '$http', 'Children', 'User', function($rootScope, $scope, $stateParams, $http, Children, User) {
     var childId = $stateParams.childId;
 
     getChild();
@@ -155,6 +155,26 @@ app.controller('ChildController', ['$rootScope', '$scope', '$stateParams', '$htt
         .$promise
         .then(function(res){
           console.log(res);
+        }, function(err){
+          console.log(err);
+        })
+        .finally(function(){
+          $rootScope.isLoading = false;
+        });
+    };
+
+    /**
+     * deleteEmergencyContact Delete a specific emergency contact
+     * @return void
+     */
+    $scope.deleteEmergencyContact = function(person, index){
+      $rootScope.isLoading = true;
+        User.deleteUser({userId: person.id})
+        .$promise
+        .then(function(res){
+          console.log(res);  
+          $scope.emergencyContacts.splice(index, 1);
+        
         }, function(err){
           console.log(err);
         })

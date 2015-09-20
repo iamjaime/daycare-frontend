@@ -20,6 +20,12 @@ app.factory('User', ['$resource', function ($resource) {
             transformRequest: function (data) {
                return JSON.stringify({'data': data});
             }
+        },
+        deleteUser: {
+            method: 'DELETE',
+            transformRequest: function (data) {
+               return JSON.stringify({'data': data});
+            }
         }
 
       });

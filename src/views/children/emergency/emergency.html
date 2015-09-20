@@ -30,7 +30,7 @@
                     <label class="label bg-danger">{{ person.pivot.relationship }}</label>
                   </div>
 	              	<div class="col-sm-2">
-	              		<button class="btn pull-right btn-rounded btn-sm btn-icon btn-danger">
+	              		<button ng-click="deleteEmergencyContact(person, $index)" class="btn pull-right btn-rounded btn-sm btn-icon btn-danger">
 		              		<i class="fa fa-trash"></i>
 	              		</button>
 	              	</div>
