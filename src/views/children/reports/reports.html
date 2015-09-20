@@ -11,11 +11,13 @@
                 <i class="glyphicon glyphicon-list-alt fa-fw text-muted"></i> 
                 Attendance
               </a>
+              <!--
               <a class="list-group-item" href="">
                 <span class="badge bg-info">16</span>
                 <i class="fa fa-info-circle fa-fw text-muted"></i>
                 Incident
               </a>
+              -->
             </div>
 		</div>
 		<!--End Sidebar-->
@@ -29,13 +31,7 @@
 		    </div>
 		    <div class="row wrapper">
 		      <div class="col-sm-5 m-b-xs">
-		        <select class="input-sm form-control w-sm inline v-middle">
-		          <option value="0">Bulk action</option>
-		          <option value="1">Delete selected</option>
-		          <option value="2">Bulk edit</option>
-		          <option value="3">Export</option>
-		        </select>
-		        <button class="btn btn-sm btn-default">Apply</button>                
+		                      
 		      </div>
 		      <div class="col-sm-4">
 		      </div>
@@ -52,34 +48,15 @@
 		      <table class="table table-striped b-t b-light">
 		        <thead>
 		          <tr>
-		            <th style="width:20px;">
-		              <label class="i-checks m-b-none">
-		                <input type="checkbox"><i></i>
-		              </label>
-		            </th>
-		            <th>Date</th>
 		            <th>Time In</th>
 		            <th>Time Out</th>
 		            <th style="width:30px;"></th>
 		          </tr>
 		        </thead>
 		        <tbody>
-		          <tr>
-		            <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
-		            <td>Jul 25, 2015</td>
-		            <td>6:50am</td>
-		            <td>5:48pm</td>
-		            <td>
-		              <!--
-		              <a class="btn btn-rounded btn-icon btn-primary btn-sm"> <i class="fa fa-eye"></i> </a>
-		              -->
-		            </td>
-		          </tr>
-		          <tr>
-		            <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
-		            <td>Jul 25, 2015</td>
-		            <td>6:50am</td>
-		            <td>5:48pm</td>
+		          <tr ng-repeat="record in attendance">
+		            <td>{{ record.time_in | date : 'MMM d, y - h:mm a' }}</td>
+		            <td>{{ record.time_out | date : 'MMM d, y - h:mm a' }}</td>
 		            <td>
 		              <!--
 		              <a class="btn btn-rounded btn-icon btn-primary btn-sm"> <i class="fa fa-eye"></i> </a>
@@ -89,19 +66,16 @@
 		        </tbody>
 		      </table>
 		    </div>
+
 		    <footer class="panel-footer">
 		      <div class="row">
 		        <div class="col-sm-4 hidden-xs">
-		          <select class="input-sm form-control w-sm inline v-middle">
-		            <option value="0">Bulk action</option>
-		            <option value="1">Delete selected</option>
-		            <option value="2">Bulk edit</option>
-		            <option value="3">Export</option>
-		          </select>
-		          <button class="btn btn-sm btn-default">Apply</button>                  
+		        
 		        </div>
 		        <div class="col-sm-4 text-center">
+		          <!--
 		          <small class="text-muted inline m-t-sm m-b-sm">showing 20-30 of 50 items</small>
+		          -->
 		        </div>
 		        <div class="col-sm-4 text-right text-center-xs">                
 		          <ul class="pagination pagination-sm m-t-none m-b-none">
