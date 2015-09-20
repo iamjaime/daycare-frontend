@@ -32,7 +32,6 @@ app.factory('Children', ['$resource', function ($resource) {
           url: API_END_POINT + '/child/:childId/contacts',
           method: 'GET'
         },
-
         checkin: {
           url : API_END_POINT + '/child/:childId/checkin',
           method: 'POST',
@@ -46,6 +45,10 @@ app.factory('Children', ['$resource', function ($resource) {
           transformRequest: function (data) {
              return JSON.stringify({'data': data});
           }
+        },
+        attendance: {
+          url: API_END_POINT + '/child/:childId/attendance',
+          method: 'GET'
         },
         makeNote: {
           url : API_END_POINT + '/note',

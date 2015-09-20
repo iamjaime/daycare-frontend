@@ -34,6 +34,7 @@ app.controller('ChildrenController', ['$rootScope', '$scope', '$http', 'Children
       .$promise
       .then(function(res){
         $scope.children[index].checkins = true;
+        console.log(res);
       }, function(err){
         console.log(err);
       }).finally(function(){
@@ -51,6 +52,7 @@ app.controller('ChildrenController', ['$rootScope', '$scope', '$http', 'Children
       .$promise
       .then(function(res){ 
         $scope.children[index].checkins = null;
+        console.log(res);
       }, function(err){
         console.log(err);
       }).finally(function(){

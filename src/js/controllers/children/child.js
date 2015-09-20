@@ -22,6 +22,7 @@ app.controller('ChildController', ['$rootScope', '$scope', '$stateParams', '$htt
         $scope.authorizedPickup = res.data.authorized_pickup;
         $scope.emergencyContacts = res.data.emergency_contacts;
         $scope.parents = res.data.parents;
+        $scope.attendance = res.data.attendance;
         console.log($scope.child);
       }, function(err){
         console.log(err);
