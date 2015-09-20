@@ -24,8 +24,8 @@
                     <label class="label bg-primary">{{ person.relationship }}</label>
                   </div>
 	              	<div class="col-sm-2">
-	              		<button ng-click="removeAuthPickup()" class="btn pull-right btn-rounded btn-sm btn-icon btn-danger">
-		              		<i class="fa fa-trash"></i>
+	              		<button ng-click="removeAuthPickup(person, $index)" class="btn pull-right btn-rounded btn-sm btn-icon btn-danger">
+		              		<i class="fa fa-minus"></i>
 	              		</button>
 	              	</div>
 	              </div>
@@ -63,7 +63,7 @@
             <span ng-if="contact.type == 'emergency'" class="pull-right label bg-danger inline m-t-sm">{{ contact.relationship }}</span>  
           </div>
           <div class="col-md-2">
-            <button ng-click="addAuthPickup()" class="btn pull-right btn-rounded btn-sm btn-icon btn-primary">
+            <button ng-click="authorizePickup(contact, $index)" class="btn pull-right btn-rounded btn-sm btn-icon btn-primary">
               <i class="fa fa-plus"></i>
             </button>
           </div>  
