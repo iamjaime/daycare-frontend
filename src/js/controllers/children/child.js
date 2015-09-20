@@ -4,6 +4,7 @@
   // Child controller ( For individual Child )
 app.controller('ChildController', ['$rootScope', '$scope', '$stateParams', '$http', 'Children', 'User', function($rootScope, $scope, $stateParams, $http, Children, User) {
     var childId = $stateParams.childId;
+    $scope.eContact = {};
 
     getChild();
     getContacts();
@@ -182,5 +183,31 @@ app.controller('ChildController', ['$rootScope', '$scope', '$stateParams', '$htt
           $rootScope.isLoading = false;
         });
     };
+
+    /**
+     * createEmergencyContact  Creates a new emergency contact
+     * @return void
+     */
+    $scope.createEmergencyContact = function(){
+      $rootScope.isLoading = true;
+      $scope.eContact.role = "emergency_contact";
+      $scope.eContact.status = "active";
+      $scope.eContact.childId = childId;
+      $scope.eContact.pivot = {};
+      $scope.eContact.pivot.relationship = $scope.eContact.relationship;
+        User.save({}, $scope.eContact)
+        .$promise
+        .then(function(res){
+          console.log(res);  
+          $scope.emergencyContacts.push($scope.eContact);
+          $scope.eContact = {}; //empty the econtact
+        }, function(err){
+          console.log(err);
+        })
+        .finally(function(){
+          $rootScope.isLoading = false;
+        });
+    };
+
 
 }]);
